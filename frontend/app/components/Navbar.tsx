@@ -1,8 +1,18 @@
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../../public/assets/logo.svg';
 
-export const Navbar = () => {
+interface LinkItem {
+  name: string;
+  link: string;
+}
+
+interface Props {
+  links: LinkItem[];
+}
+
+export const Navbar: React.FC<Props> = ({ links }) => {
   return (
     <nav className="bg-dark-blue dark:bg-gray-900 shadow-lg fixed top-0 w-full z-50">
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">
@@ -12,13 +22,12 @@ export const Navbar = () => {
             TrackFit
           </span>
         </Link>
-        <div className="flex items-center"> {/* Added a div to contain the buttons */}
-          <Link href="/signup" className="btn fancy-btn mr-4"> {/* Added mr-4 class for margin-right */}
-            Sign Up
-          </Link>
-          <Link href="/login" className="btn fancy-btn">
-            Log In
-          </Link>
+        <div className="flex items-center">
+          {links.map((link, index) => (
+            <Link key={index} href={link.link} className="btn fancy-btn mr-4">
+              {link.name.toUpperCase()}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
