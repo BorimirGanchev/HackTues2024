@@ -31,5 +31,5 @@ export const Navbar: React.FC<Props> = ({ links }) => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
