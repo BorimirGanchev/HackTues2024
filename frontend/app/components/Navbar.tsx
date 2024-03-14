@@ -8,8 +8,8 @@ export const Navbar = () => {
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <Image src={logo} alt="FitnessApp Logo" width={50} height={50} />
-          <span className="text-gray-800 dark:text-white text-xl font-bold ml-2">
-            FitnessApp
+          <span className="text-white dark:text-white text-xl font-bold ml-2">
+            TrackFit
           </span>
         </Link>
         <div className="flex items-center"> {/* Added a div to contain the buttons */}
