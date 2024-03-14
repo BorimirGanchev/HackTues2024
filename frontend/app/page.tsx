@@ -13,7 +13,7 @@ export default function Home() {
           <p className="mt-3 text-lg text-gray-600 dark:text-gray-400">
             Your journey to a healthier life starts here.
           </p>
-          <Link href="/signup"  className="btn fancy-btn mt-5">
+          <Link href="/signup"  className="btn fancy-btn mt-5 items-justify-center">
             Get Started
           </Link>
         </div>

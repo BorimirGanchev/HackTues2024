@@ -7,7 +7,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --button-bg-start: 144, 238, 144;
-  --button-bg-end: 0, 100, 0; /* Dark blue */
+  --button-bg-end: 0, 100, 10; /* Dark blue */
 }
 
 @media (prefers-color-scheme: dark) {
