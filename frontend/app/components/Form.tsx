@@ -12,6 +12,9 @@ interface Props {
   fields: Field[];
 }
 
+  
+  
+
 const Form: React.FC<Props> = ({ onSubmit, fields }) => {
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
 
@@ -32,16 +35,17 @@ const Form: React.FC<Props> = ({ onSubmit, fields }) => {
             {field.label}
           </label>
           <input
-            type={field.type === 'password' ? 'password' : 'text'}
+            type={field.type}
             id={field.name}
             name={field.name}
             value={formData[field.name] || ''}
             onChange={(e) => handleChange(e, field.name)}
-            className="w-[30%] px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:bg-gray-600"
+            className="px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:bg-gray-600"
+            required
           />
         </div>
       ))}
-      <button type="submit" className="w-[30%] bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+      <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
         Submit
       </button>
     </form>

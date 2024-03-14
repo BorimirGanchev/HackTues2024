@@ -33,9 +33,10 @@
     "build": "tsc -p tsconfig.json",
     "lint": "eslint . --ext .ts --ext .mts",
     "test": "jest --coverage",
-    "start_ts_dev": "npx tsx src/auth.ts"
+    "start_ts_dev": "npx tsx src/main.ts"
   },
   "dependencies": {
+    "@prisma/client": "^5.11.0",
     "@types/dotenv": "^8.2.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
