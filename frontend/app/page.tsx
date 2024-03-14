@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Navbar from "./components/Navbar"; // Adjust the import path as necessary
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   return (
