@@ -1,11 +1,20 @@
 'use client'
 import React from 'react';
 import Form from '../components/Form';
-
+import { cookies } from '../utils/cookieHandler';
+import axios from 'axios';
 
 const Login: React.FC = () => {
   const handleSubmit = (data: { [key: string]: string }) => {
-    console.log(data);
+    console.log(data)
+    
+    const username = data.username;
+
+    console.log(username)
+
+    cookies.user.set(username)
+
+    
   };
 
   const fields = [
