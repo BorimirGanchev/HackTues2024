@@ -21,7 +21,7 @@ app.get('/workouts/all/:username', async (req: Request, res: Response) => {
 
 app.get('/workouts/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
-  const { username } = req.params;
+  const { username } = req.body;
   const workout = await db.getWorkout(username, id);
   if (workout) {
     res.json(workout);
