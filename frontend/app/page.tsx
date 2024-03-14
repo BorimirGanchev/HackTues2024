@@ -3,9 +3,12 @@ import Image from "next/image";
 import {Navbar} from "./components/Navbar"; // Adjust the import path as necessary
 
 export default function Home() {
+  const links = [
+    { name: 'Signup', link: '/signup' },
+    { name: 'Login', link: '/login' }]
   return (
     <>
-      <Navbar />
+    <Navbar links={links} />
       <div className="container mx-auto mt-10 p-60">
         {/* Introduction Section */}
         <div className="text-center py-10 my-52" id="home"> {/* Adjusted padding for the first section */}
@@ -26,9 +29,9 @@ export default function Home() {
         <p className="text-center text-lg text-black">
           Introducing a cutting-edge fitness tracker designed to revolutionize your workout experience! With this innovative device, seamlessly monitor your training regimen with precision and finesse.
           
-          Picture this: as you embark on a rigorous workout session, our state-of-the-art bracelet diligently observes every movement. Whether you're engaging in a dynamic bench press or executing a perfect squat, simply initiate the tracking feature to meticulously analyze your exercise form. Once satisfied, effortlessly conclude the session by tagging it with a personalized name and pertinent details such as sets and repetitions.
+          Picture this: as you embark on a rigorous workout session, our state-of-the-art bracelet diligently observes every movement. Whether you are engaging in a dynamic bench press or executing a perfect squat, simply initiate the tracking feature to meticulously analyze your exercise form. Once satisfied, effortlessly conclude the session by tagging it with a personalized name and pertinent details such as sets and repetitions.
           
-          But the ingenuity doesn't stop there! Seamlessly integrated with our robust backend system, your workout data is securely transmitted for comprehensive analysis. Meanwhile, on our intuitive web application, users gain exclusive access to detailed training insights. Delve into nuanced analyses, from observing movement patterns across varying intensities to receiving expert evaluations on form precision.
+          But the ingenuity does not stop there! Seamlessly integrated with our robust backend system, your workout data is securely transmitted for comprehensive analysis. Meanwhile, on our intuitive web application, users gain exclusive access to detailed training insights. Delve into nuanced analyses, from observing movement patterns across varying intensities to receiving expert evaluations on form precision.
          
           Experience the future of fitness tracking with us – where every move is met with unparalleled sophistication and accuracy!
         </p>
