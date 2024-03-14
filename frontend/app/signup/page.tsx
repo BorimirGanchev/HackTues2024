@@ -8,7 +8,7 @@ const Signup: React.FC = () => {
     undefined
   );
   const handleSubmit = async (data: { [key: string]: string }) => {
-    const res = await axios.post("http://localhost:3001/auth/signup", {
+    const res = await axios.post(`${process.env.GATEWAY_URL}`, {
       body: {
         username: data.username,
         password: data.password,
