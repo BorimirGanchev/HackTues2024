@@ -11,6 +11,7 @@ from sklearn.metrics import accuracy_score
 import pandas as pd
 import numpy as np
 import copy
+import pickle
 
 
 class ClassificationAlgorithms:
@@ -396,6 +397,7 @@ class ClassificationAlgorithms:
         criterion="gini",
         print_model_details=False,
         gridsearch=True,
+        save_model=False,
     ):
 
         if gridsearch:
@@ -425,6 +427,17 @@ class ClassificationAlgorithms:
 
         if gridsearch:
             rf = rf.best_estimator_
+        
+        print(f"!!!!!!Train X: {train_X.shape}")
+        print(f"!!!!!!Train y: {train_y.shape}")
+        print(f"!!!!!!Test X: {test_X.shape}")
+        
+        # Save the model
+        if save_model:
+            model_path = "random_forest_model.pkl"
+            with open(model_path, 'wb') as f:
+                pickle.dump(rf, f)
+            print(f"Model saved to {model_path}")
 
         pred_prob_training_y = rf.predict_proba(train_X)
         pred_prob_test_y = rf.predict_proba(test_X)
