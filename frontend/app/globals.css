@@ -59,4 +59,22 @@ body {
     margin: 0 auto;
     padding: 20px;
   }
+
+
+  .btn.fancy-btn {
+    background-color: #10B981; /* Tailwind's emerald-500 */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 9999px; /* Fully rounded edges */
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .btn.fancy-btn:hover {
+    background-color: #059669; /* Tailwind's emerald-600 */
+    transform: translateY(-2px);
+  }
+  
+
 }
