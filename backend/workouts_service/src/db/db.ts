@@ -14,7 +14,6 @@ class DB {
     }[],
   ): Promise<void> {
     try {
-      // Find the user by username
       const user = await prisma.user.findUnique({
         where: { username },
       });
@@ -23,16 +22,17 @@ class DB {
         throw new Error(`User with username ${username} not found`);
       }
 
-      // Create the workout associated with the user
       await prisma.workout.create({
         data: {
           startTime,
           endTime,
           userId: user.id,
           exercises: {
-            createMany: {
-              data: exercises,
-            },
+            create: exercises.map((exercise) => {
+              return {
+                ...exercise,
+              };
+            }),
           },
         },
       });
