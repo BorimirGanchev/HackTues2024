@@ -1,10 +1,17 @@
 'use client'
 import React from 'react';
 import Form from '../components/Form';
+import axios from 'axios';
 
 const Signup: React.FC = () => {
-  const handleSubmit = (data: { [key: string]: string }) => {
-    console.log(data);
+  const handleSubmit = async (data: { [key: string]: string }) => {
+    const token = await axios.post("http://localhost:5000/auth/signup",{
+      body: {
+        username: data.username,
+        password: data.password
+      }
+    })
+    console.log("token -> ",token);
   };
 
   const fields = [

@@ -6,8 +6,10 @@ import bodyParser from 'body-parser';
 import { DB, IDB } from '../db_clients/auth_repository';
 import { hasher } from '../hasher';
 import { twofa } from '../TwoFA';
+import cors from "cors"
 const app = express();
-const PORT = 3000;
+app.use(cors())
+const PORT = 5000;
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET || 'hihi';
 console.log(JWT_SECRET_KEY);
@@ -19,7 +21,7 @@ app.use(bodyParser.json());
 
 app.post('/auth/login', async (req: Request, res: Response) => {
   const { username, password } = req.body;
-
+  console.log("statrt")
   try {
     const User = await db.get_user(username);
     if (User === null) {
@@ -36,7 +38,8 @@ app.post('/auth/login', async (req: Request, res: Response) => {
     // res.status(201).json("sent 2fa")
 
     const token = jwt.sign({ username }, JWT_SECRET_KEY);
-    return res.status(200).json({});
+    console.log("hihi")
+    return res.status(200).json({token});
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
