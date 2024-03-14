@@ -3,14 +3,13 @@ import React from 'react';
 import Form from '../components/Form';
 
 
-const Signup: React.FC = () => {
+const Login: React.FC = () => {
   const handleSubmit = (data: { [key: string]: string }) => {
     console.log(data);
   };
 
   const fields = [
     { label: 'Username', type: 'text', name: 'username' },
-    { label: 'Email', type: 'email', name: 'email' },
     { label: 'Password', type: 'password', name: 'password' },
   ];
 
@@ -21,4 +20,4 @@ const Signup: React.FC = () => {
   );
 };
 
-export default Signup;
+export default Login;
