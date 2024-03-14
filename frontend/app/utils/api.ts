@@ -9,6 +9,7 @@ export type exercise = {
     exercises: exercise[]
     start: number
     end: number
+    id: number
 }
 
 const data: {workouts: workout[]} = {
@@ -16,56 +17,64 @@ const data: {workouts: workout[]} = {
         start: Date.now(),
         name: "Pull up bar ab workout",
         exercises: [],
-        end: Date.now()
+        end: Date.now(),
+        id: 1
     },
     {
         name: "Pull up bar ab workout",
         exercises: [],
         start: Date.now(),
-        end: Date.now()
+        end: Date.now(),
+        id: 1
     },
     {
         name: "Pull up bar ab workout",
         exercises: [],
         start: Date.now(),
-        end: Date.now()
+        end: Date.now(),
+        id: 1
     },
     {
         name: "Pull up bar ab workout",
         exercises: [],
         start: Date.now(),
-        end: Date.now()
+        end: Date.now(),
+        id: 1
     },
     {
         name: "Pull up bar ab workout",
         exercises: [],
         start: Date.now(),
-        end: Date.now()
+        end: Date.now(),
+        id: 1
     },
     {
         name: "Pull up bar ab workout",
         exercises: [],
         start: Date.now(),
-        end: Date.now()
+        end: Date.now(),
+        id: 1
     },
     {
         name: "Pull up bar ab workout",
         exercises: [],
         start: Date.now(),
-        end: Date.now()
+        end: Date.now(),
+        id: 1
     },
     {
         name: "Pull up bar ab workout",
         exercises: [],
         start: Date.now(),
-        end: Date.now()
+        end: Date.now(),
+        id: 1
     },
 ]
 }
 
 interface IApi{
     getAllWorkouts(username: string): workout[]
-    getWorkout(username: string,id : number): workout
+    getWorkout(username: string,id : number): workout | undefined
 }
 
 class Api implements IApi{
@@ -73,10 +82,20 @@ class Api implements IApi{
         return data.workouts
     }
 
-    getWorkout(username: string, id: number): workout {
-        return data.workouts[id]
+    getWorkout(username: string, id: number) {
+        return data.workouts.find(workout => workout.id === id);
     }
 }
+
+// interface FitnessData {
+//     sensor: string[];
+//     name: string;
+//     values: numbers[];
+// }
+
+// function parseFtinessData(data : FitnessData) {
+//     data.name
+// }
 
 
 export const api: IApi = new Api()

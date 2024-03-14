@@ -1,0 +1,32 @@
+{
+  "auth": {
+    "baseURL": "http://host.docker.internal:3000",
+    "routes": {
+      "login": "/auth/login",
+      "signup": "/auth/signup"
+    },
+    "methods": {
+      "login": "post",
+      "signup": "post"
+    }
+  },
+  "exercises": {
+    "baseURL": "http://host.docker.internal:3007",
+    "routes": {
+      "create_exercises": "/exercises/create_exercises",
+      "get_program": "/exercises/get_program",
+      "add_new_workout": "/exercises/add_new_workout",
+      "get_progression": "/exercises/get_progression",
+      "create_user": "/exercises/create_user",
+      "add_program": "/exercises/add_program"
+    },
+    "methods": {
+      "create_exercises": "post",
+      "get_program": "get",
+      "add_new_workout": "post",
+      "get_progression": "get",
+      "create_user": "post",
+      "add_program": "post"
+    }
+  }
+}
