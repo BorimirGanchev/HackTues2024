@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, User, Exercise, Workout } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -81,3 +81,4 @@ class DB {
 }
 
 export const db = new DB();
+export { User, Exercise, Workout };
