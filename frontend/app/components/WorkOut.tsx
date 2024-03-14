@@ -1,5 +1,7 @@
 import { api, exercise, workout } from '../utils/api';
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 // import {work} from "../utils/api"
 
 const Exercise: React.FC<{exercise: exercise}> = ({exercise}) => {
@@ -16,7 +18,6 @@ const Exercise: React.FC<{exercise: exercise}> = ({exercise}) => {
 
 
 export const  WorkOut: React.FC<{workout: workout}>= ({workout}) => {
- 
   
   return (
     <div className="rectangle bg-gray-200 border border-gray-300 rounded-lg p-4 mb-10" style={{ backgroundColor: '#4b4243' }}>
@@ -29,9 +30,9 @@ export const  WorkOut: React.FC<{workout: workout}>= ({workout}) => {
             return <Exercise exercise={exercise}/>
           })}
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-6">
-          Preview Your Workout
-        </button>
+        <Link className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-6" href={`/workout/${workout.id}`}>
+          Review Your Workout
+        </Link>
       </div>
     </div>
   )
