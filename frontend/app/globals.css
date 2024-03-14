@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --button-bg-start: 144, 238, 144;
+  --button-bg-end: 0, 100, 0; /* Dark blue */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+    --button-bg-start: 14, 165, 233; /* Light blue for dark mode */
+    --button-bg-end: 29, 78, 216; /* Dark blue for dark mode */
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: white;
+  background-image: linear-gradient( 
+    to right, 
+    rgb(var(--button-bg-start)), 
+    rgb(var(--button-bg-end))
+  );
+  transition: background 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-image: linear-gradient( 
+    to left, 
+    rgb(var(--button-bg-start)), 
+    rgb(var(--button-bg-end))
+  );
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .flex-row-end {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+}
