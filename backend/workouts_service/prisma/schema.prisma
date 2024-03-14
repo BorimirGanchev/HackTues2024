@@ -7,31 +7,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Define the User table
 model User {
   id       Int      @id @default(autoincrement())
   username String   @unique
   workouts Workout[]
 }
 
-// Define the Workout table
 model Workout {
   id        Int       @id @default(autoincrement())
   startTime DateTime
   endTime   DateTime
-  userId    Int       // Define the foreign key to User
+  userId    Int       
   user      User      @relation(fields: [userId], references: [id])
   exercises Exercise[]
 
-  // Define the relationship with Exercise
 }
 
-// Define the Exercise table
 model Exercise {
   id         Int      @id @default(autoincrement())
   reps       Int
   weight     Float
   rawData    Json?
-  workoutId  Int      // Define the foreign key to Workout
+  workoutId  Int      
   workout    Workout  @relation(fields: [workoutId], references: [id])
 }

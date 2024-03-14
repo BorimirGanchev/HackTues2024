@@ -22,7 +22,7 @@
 
 body {
   color: #C9C0BB;
-  background: linear-gradient(135deg, rgb(169, 169, 169) 0%, rgb(255, 255, 255) 100%);
+  background: url("../public/assets/background.jpg");
 }
 
 .btn {
