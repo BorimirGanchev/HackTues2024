@@ -14,7 +14,7 @@ class CookieWrapper {
 }
 
 interface CookieSettings {
-  user: number;
+  user: string;
   token: string;
 }
 
@@ -68,12 +68,12 @@ class CookieBuilder {
 }
 
 // Usage example
-const cookies = new CookieBuilder()
+export const cookies = new CookieBuilder()
   .setCookie("user")
   .setCookie("token", { expires: 7 }) // Example with options
   .build();
 
-cookies.user.set(123);
+cookies.user.set("kur");
 console.log(cookies.user.get());
 cookies.token.set("abc");
 console.log(cookies.token.get());
