@@ -28,17 +28,17 @@ class Threader:
         # Implement logging or processing of data here
         print(data)  # Example: simple print, replace with logging or updating the UI as needed
 
-# Usage
-threader = Threader(sensor)
+# # Usage
+# threader = Threader(sensor)
 
-root = tk.Tk()
-root.title("Sensor Data Tracker")
-root.geometry("500x300")
+# root = tk.Tk()
+# root.title("Sensor Data Tracker")
+# root.geometry("500x300")
 
-start_button = tk.Button(root, text="Start", command=threader.start_sensor_listener, font=("Helvetica", 14), padx=20, pady=10)
-start_button.pack(pady=10)
+# start_button = tk.Button(root, text="Start", command=threader.start_sensor_listener, font=("Helvetica", 14), padx=20, pady=10)
+# start_button.pack(pady=10)
 
-end_button = tk.Button(root, text="End", command=threader.stop_sensor_listener_and_log_data, font=("Helvetica", 14), padx=20, pady=10)
-end_button.pack(pady=10)
+# end_button = tk.Button(root, text="End", command=threader.stop_sensor_listener_and_log_data, font=("Helvetica", 14), padx=20, pady=10)
+# end_button.pack(pady=10)
 
-root.mainloop()
+# root.mainloop()
