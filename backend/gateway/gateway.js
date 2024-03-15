@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const config = require("./config.json");
-
+const cors = require("cors");
 class API {
   getIndexAfterServiceName(subRoute) {
     for (let i = 1; i < subRoute.length; i += 1) {
@@ -32,7 +32,7 @@ class API {
 
 const api = new API();
 const app = express();
-
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -56,12 +56,15 @@ app.all("*", async (req, res) => {
       method: req.method,
       url: targetUrl + parsedUrl,
       data: req.body,
-      headers: req.headers,
+      headers: {
+        accept: req.headers.accept,
+        "User-Agent": req.headers["user-agent"],
+      },
     };
-
+    console.log("before", axiosConfig);
     const response = await api.sendReq(axiosConfig);
-
-    res.status(response.status).set(response.headers).send(response.data);
+    console.log("response", response);
+    res.status(response.status).send(response.data);
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).send("Internal Server Error\n");
