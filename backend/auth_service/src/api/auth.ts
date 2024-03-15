@@ -51,7 +51,7 @@ app.post('/auth/signup', async (req: Request, res: Response) => {
 
   try {
     const createUserResult: { success: boolean; message?: string } =
-      await db.create_user(username, /*hasher.hash_password*/ password);
+      await db.create_user(username, hasher.hash_password(password));
 
     if (createUserResult.success) {
       res.status(201).json({ message: 'User created successfully' });
