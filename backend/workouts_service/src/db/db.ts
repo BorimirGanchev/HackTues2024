@@ -3,6 +3,11 @@ import { PrismaClient, User, Exercise, Workout } from '@prisma/client';
 const prisma = new PrismaClient();
 
 class DB {
+  async redactWorkout(workoutId: number, new_weight: number): Promise<Workout> {
+    const updatedWorkout = await prisma.workout.update(workoutId);
+    return updatedWorkout;
+  }
+
   async createUser(username: string): Promise<User> {
     try {
       // Create the user in the database
