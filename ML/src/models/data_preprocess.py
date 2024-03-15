@@ -15,22 +15,6 @@ def process_data(df):
         outlier_columns = list(df.columns[:6])
         
         def mark_outliers_chauvenet(dataset, col, C=2):
-            """Finds outliers in the specified column of datatable and adds a binary column with
-            the same name extended with '_outlier' that expresses the result per data point.
-            
-            Taken from: https://github.com/mhoogen/ML4QS/blob/master/Python3Code/Chapter3/OutlierDetection.py
-
-            Args:
-                dataset (pd.DataFrame): The dataset
-                col (string): The column you want apply outlier detection to
-                C (int, optional): Degree of certainty for the identification of outliers given the assumption 
-                                of a normal distribution, typicaly between 1 - 10. Defaults to 2.
-
-            Returns:
-                pd.DataFrame: The original dataframe with an extra boolean column 
-                indicating whether the value is an outlier or not.
-            """
-
             dataset = dataset.copy()
             # Compute the mean and standard deviation.
             mean = dataset[col].mean()
@@ -196,18 +180,19 @@ def process_data(df):
             
             return df_cluster
             
-        interpolation(df)
+        # interpolation(df)
         df_lowpass = butterworth_lowpass_filter(df)
         df_pca = apply_pca(df_lowpass)
         df_squared = sum_squares(df_pca)
-        df_temporal = temporal_abstraction(df_squared)
-        df_freq = frequency_abstraction(df_temporal)
-        df_freq = check_overlapping_windows(df_freq)
+        # df_temporal = temporal_abstraction(df_squared)
+        # df_freq = frequency_abstraction(df_temporal)
+        df_freq = check_overlapping_windows(df_squared)
         df_cluster = clustering(df_freq)
         
         return df_cluster
 
-    outlier_removed_df = remove_ouliers(df) # Remove outliers
-    processed_df = build_features(outlier_removed_df) # Build features
+    # outlier_removed_df = remove_ouliers(df) # Remove outliers
+    # processed_df = build_features(outlier_removed_df) # Build features
+    processed_df = build_features(df) # Build features
     
     return processed_df

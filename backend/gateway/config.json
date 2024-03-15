@@ -1,5 +1,8 @@
 {
-    "auth":{
-        "redirect_url":"http://localhost:5000"
-    }
+  "auth": {
+    "redirect_url": "http://localhost:8080"
+  },
+  "model": {
+    "redirect_url": "http://localhost:5000"
+  }
 }

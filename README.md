@@ -1,6 +1,9 @@
 # Track Fit
 
+
 Track Fit is a comprehensive fitness solution that uses easy to use technology to monitor and analyze your workouts. With Track Fit, users can track their workout sessions using a fitness bracelet equipped with advanced sensors, with minimal effort of their side for entering information. Here's how it works:
+
+![alt text](tema.jpg)
 
 ## Getting Started
 

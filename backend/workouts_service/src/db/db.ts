@@ -19,9 +19,10 @@ class DB {
   }
   async createWorkout(
     username: string,
-    startTime: Date,
-    endTime: Date,
+    startTime: string,
+    endTime: string,
     exercises: {
+      type: string;
       reps: number;
       weight: number;
       rawData?: Record<string, any>;
@@ -35,6 +36,12 @@ class DB {
       if (!user) {
         throw new Error(`User with username ${username} not found`);
       }
+
+      console.log(
+        exercises.map((value) => {
+          console.log(value);
+        }),
+      );
 
       await prisma.workout.create({
         data: {
@@ -51,7 +58,7 @@ class DB {
         },
       });
     } catch (error) {
-      throw new Error(`Failed to create workout: ${error}`);
+      console.log(error);
     }
   }
 
@@ -59,8 +66,14 @@ class DB {
     try {
       // Find the user by username
       const user = await prisma.user.findUnique({
-        where: { username },
-        include: { workouts: true },
+        where: { username: username },
+        include: {
+          workouts: {
+            include: {
+              exercises: true,
+            },
+          },
+        },
       });
 
       if (!user) {
@@ -80,7 +93,13 @@ class DB {
     try {
       const user = await prisma.user.findUnique({
         where: { username },
-        include: { workouts: true },
+        include: {
+          workouts: {
+            include: {
+              exercises: true,
+            },
+          },
+        },
       });
 
       if (!user) {
@@ -95,4 +114,4 @@ class DB {
 }
 
 export const db = new DB();
-export { User, Exercise, Workout };
+export type { User, Exercise, Workout };

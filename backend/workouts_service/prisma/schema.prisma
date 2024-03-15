@@ -15,8 +15,8 @@ model User {
 
 model Workout {
   id        Int       @id @default(autoincrement())
-  startTime DateTime
-  endTime   DateTime
+  startTime String
+  endTime   String
   userId    Int       
   user      User      @relation(fields: [userId], references: [id])
   exercises Exercise[]
@@ -26,7 +26,8 @@ model Workout {
 model Exercise {
   id         Int      @id @default(autoincrement())
   reps       Int
-  weight     Float
+  type       String
+  weight     Float?
   rawData    Json?
   workoutId  Int      
   workout    Workout  @relation(fields: [workoutId], references: [id])

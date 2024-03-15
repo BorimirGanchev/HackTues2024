@@ -2,58 +2,58 @@
 import axios, { AxiosResponse } from "axios";
 import { Exercise, Workout } from "../types/ExerciseServiceTypes";
 
-const data: { workouts: Workout[] } = {
-  workouts: [
-    {
-      start: Date.now(),
-      name: "Pull up bar ab workout",
-      exercises: [],
-      end: Date.now(),
-    },
-    {
-      name: "Pull up bar ab workout",
-      exercises: [],
-      start: Date.now(),
-      end: Date.now(),
-    },
-    {
-      name: "Pull up bar ab workout",
-      exercises: [],
-      start: Date.now(),
-      end: Date.now(),
-    },
-    {
-      name: "Pull up bar ab workout",
-      exercises: [],
-      start: Date.now(),
-      end: Date.now(),
-    },
-    {
-      name: "Pull up bar ab workout",
-      exercises: [],
-      start: Date.now(),
-      end: Date.now(),
-    },
-    {
-      name: "Pull up bar ab workout",
-      exercises: [],
-      start: Date.now(),
-      end: Date.now(),
-    },
-    {
-      name: "Pull up bar ab workout",
-      exercises: [],
-      start: Date.now(),
-      end: Date.now(),
-    },
-    {
-      name: "Pull up bar ab workout",
-      exercises: [],
-      start: Date.now(),
-      end: Date.now(),
-    },
-  ],
-};
+// const data: { workouts: Workout[] } = {
+//   workouts: [
+//     {
+//       start: Date.now(),
+//       name: "Pull up bar ab workout",
+//       exercises: [],
+//       end: Date.now(),
+//     },
+//     {
+//       name: "Pull up bar ab workout",
+//       exercises: [],
+//       start: Date.now(),
+//       end: Date.now(),
+//     },
+//     {
+//       name: "Pull up bar ab workout",
+//       exercises: [],
+//       start: Date.now(),
+//       end: Date.now(),
+//     },
+//     {
+//       name: "Pull up bar ab workout",
+//       exercises: [],
+//       start: Date.now(),
+//       end: Date.now(),
+//     },
+//     {
+//       name: "Pull up bar ab workout",
+//       exercises: [],
+//       start: Date.now(),
+//       end: Date.now(),
+//     },
+//     {
+//       name: "Pull up bar ab workout",
+//       exercises: [],
+//       start: Date.now(),
+//       end: Date.now(),
+//     },
+//     {
+//       name: "Pull up bar ab workout",
+//       exercises: [],
+//       start: Date.now(),
+//       end: Date.now(),
+//     },
+//     {
+//       name: "Pull up bar ab workout",
+//       exercises: [],
+//       start: Date.now(),
+//       end: Date.now(),
+//     },
+//   ],
+// };
 
 interface IApi {
   getAllWorkouts(username: string): Promise<Workout[]>;
