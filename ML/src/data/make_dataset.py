@@ -100,4 +100,6 @@ def make_and_export_dataset(files, data_path):
     data_resampled.to_pickle("../../data/interim/01_data_processed.pkl")
     print("Data exported to ../../data/interim/01_data_processed.pkl")
     
-make_and_export_dataset(files, data_path)
+    return data_resampled
+    
+data_resampled =  make_and_export_dataset(files, data_path)
