@@ -2,7 +2,7 @@ from flask import Flask
 import threading
 from gui import Threader  # Assuming this is your custom module
 from gyro import Sensor  # Assuming this is your custom module
-
+import requests
 class FlaskServer:
     def __init__(self, sensor_threader: Threader, port=5000):
         self.app = Flask(__name__)
@@ -16,6 +16,9 @@ class FlaskServer:
         # Assuming log_sensor_data() returns a string message with the log data
         log_data = self.sensor.log_sensor_data(self.sensor.sensor.return_data())
         print(log_data)
+        requests.post("http://localhost:4000/model/predict",{
+            "gyro":log_data
+        })
         return 'log_data'
 
     def start(self):
