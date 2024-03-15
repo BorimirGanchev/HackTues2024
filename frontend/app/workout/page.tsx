@@ -9,7 +9,7 @@ import { useCheckUserToken } from '../utils/authenticator';
 function MyWorkOutsPage() {
   const [workouts,setWorkouts] = useState<Workout[] | null>()
   useEffect(() => {
-    useCheckUserToken();
+    //useCheckUserToken();
     const username = cookies.token.get()
     console.log('dari e tup ->', username)
     if(username === undefined || username === null){
@@ -35,11 +35,7 @@ function MyWorkOutsPage() {
               <WorkOut workout={workout}/>
           )
           })) :
-          (<p className="text-center">There are no workouts yet</p>)}
-
-
-
-
+          (<p className="flex justify-center items-center h-full text-4xl font-bold text-white dark:text-white">There are no workouts yet ...</p> )}
 
 
 
