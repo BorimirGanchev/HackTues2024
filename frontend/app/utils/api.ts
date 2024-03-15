@@ -129,5 +129,5 @@ class ExercisesApi implements IExerciseApi {
   }
 }
 
-export const api = new ExercisesApi("http://localhost:3001");
-export const authApi = new AuthApi("http://localhost:8080");
+export const api = new ExercisesApi("http://localhost:7000");
+export const authApi = new AuthApi("http://localhost:7000");
