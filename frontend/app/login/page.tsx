@@ -4,6 +4,7 @@ import Form from '../components/Form';
 import { cookies } from '../utils/cookieHandler';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { redirect } from 'next/navigation';
 
 const Login: React.FC = () => {
   const handleSubmit = async (data: { [key: string]: string }) => {
@@ -19,6 +20,7 @@ const Login: React.FC = () => {
 
       console.log('Token:', token);
       cookies.token.set(token);
+      redirect('/workout');
     } catch (error) {
       console.log('Error occurred:');
 
