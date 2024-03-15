@@ -196,18 +196,19 @@ def process_data(df):
             
             return df_cluster
             
-        interpolation(df)
+        # interpolation(df)
         df_lowpass = butterworth_lowpass_filter(df)
         df_pca = apply_pca(df_lowpass)
         df_squared = sum_squares(df_pca)
-        df_temporal = temporal_abstraction(df_squared)
-        df_freq = frequency_abstraction(df_temporal)
-        df_freq = check_overlapping_windows(df_freq)
+        # df_temporal = temporal_abstraction(df_squared)
+        # df_freq = frequency_abstraction(df_temporal)
+        df_freq = check_overlapping_windows(df_squared)
         df_cluster = clustering(df_freq)
         
         return df_cluster
 
-    outlier_removed_df = remove_ouliers(df) # Remove outliers
-    processed_df = build_features(outlier_removed_df) # Build features
+    # outlier_removed_df = remove_ouliers(df) # Remove outliers
+    # processed_df = build_features(outlier_removed_df) # Build features
+    processed_df = build_features(df) # Build features
     
     return processed_df

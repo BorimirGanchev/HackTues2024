@@ -3,14 +3,14 @@ import pickle
 from predict_model import predict_model
 
 app = Flask(__name__)
-model = pickle.load(open("../src/models/random_fores_model.pkl", "rb"))
-@app.route("/predict", methods=["POST"])
+@app.route("/model/predict", methods=["POST","GET"])
 def predict():
     try:
         data = request.json
         print(data)
-        return jsonify({"prediction": "hihi"})
+        return str(data)
     except Exception as e:
+        print(e)
         # Return error message if prediction fails
         return jsonify({"error": str(e)}), 500
 
