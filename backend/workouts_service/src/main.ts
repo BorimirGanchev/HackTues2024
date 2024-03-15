@@ -1,8 +1,9 @@
 import express, { Request, Response } from 'express'; //? gives error but code compiles so its probably from vscode
 import { db } from './db/db';
+import cors from 'cors';
 const app = express();
-const PORT = 6000;
-
+const PORT = 3001;
+app.use(cors());
 app.use(express.json());
 
 app.post('/workouts/user/new/:username', async (req, res) => {

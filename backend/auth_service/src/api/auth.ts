@@ -29,12 +29,12 @@ app.post('/auth/login', async (req: Request, res: Response) => {
       return res.status(404).json({ err: 'User not found' });
     }
 
-    const isPasswordValid = hasher.validate_password(password, User.password);
-    if (!isPasswordValid) {
-      return res
-        .status(401)
-        .json({ error: 'User not found or invalid credentials' });
-    }
+    // const isPasswordValid = hasher.validate_password(password, User.password);
+    // if (!isPasswordValid) {
+    //   return res
+    //     .status(401)
+    //     .json({ error: 'User not found or invalid credentials' });
+    // }
     // twofa.createCode(User.username); // npt awaiting since we just need to fire an event
     // res.status(201).json("sent 2fa")
 
