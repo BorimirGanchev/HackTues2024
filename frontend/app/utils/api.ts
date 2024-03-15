@@ -113,6 +113,20 @@ class ExercisesApi implements IExerciseApi {
     );
     return res.data;
   }
+
+  async updateWorkout(username: string, workout: Workout) {
+    const res: AxiosResponse<Workout> = await axios.post(
+      `${this.baseUrl}/workouts/new`,
+      {
+        exercises: workout.exercises,
+        username: username,
+        startTime: workout.startTime,
+        endTime: workout.endTime,
+      }
+    );
+
+    return res.data;
+  }
 }
 
 export const api = new ExercisesApi("http://localhost:3001");
