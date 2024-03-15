@@ -3,6 +3,7 @@ import React from "react";
 import Form from "../components/Form";
 import { cookies } from "../utils/cookieHandler";
 import { authApi } from "../utils/api";
+
 const Login: React.FC = () => {
   const handleSubmit = async (data: { [key: string]: string }) => {
     try {
