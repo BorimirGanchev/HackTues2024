@@ -7,7 +7,7 @@ export function useCheckUserToken() {
   
     if (cookies.token.get() === undefined || cookies.token.get() === null) {
       console.log('redirect');
-      //redirect('/login');
+      //redirect('/workout');
     }
 }
 

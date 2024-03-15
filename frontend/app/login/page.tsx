@@ -4,6 +4,7 @@ import Form from "../components/Form";
 import { cookies } from "../utils/cookieHandler";
 import { redirect } from "next/navigation";
 import { authApi } from "../utils/api";
+
 const Login: React.FC = () => {
   const handleSubmit = async (data: { [key: string]: string }) => {
     try {
@@ -17,7 +18,9 @@ const Login: React.FC = () => {
 
       console.log("Token:", token);
       cookies.token.set(token);
+
       redirect("/workout");
+
     } catch (error) {
       console.log("Error occurred:");
     }
