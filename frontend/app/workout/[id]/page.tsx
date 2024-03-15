@@ -9,8 +9,7 @@ import {
   Exercise,
   Workout,
 } from "../../../../backend/workouts_service/src/db/db";
-
-function WorkoutPage({ params }: { params: { id: string } }) {
+export default function WorkoutPage({ params }: { params: { id: string } }) {
   const { id: idString } = params;
   const id = Number(idString);
 
@@ -36,14 +35,39 @@ function WorkoutPage({ params }: { params: { id: string } }) {
     };
   }, [id]);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(workout);
+    api.updateWorkout(jwtDecode(cookies.token.get()).username, workout); // Log the updated array of exercises
+  };
+
+  const handleExerciseChange = (newWeightValue: string, exercise: Exercise) => {
+    const updatedExercises = workout?.exercises.map((ex) => {
+      if (ex.id === exercise.id) {
+        return { ...ex, weight: Number(newWeightValue) };
+      }
+      return ex;
+    });
+    setWorkout((prevWorkout) =>
+      prevWorkout ? { ...prevWorkout, exercises: updatedExercises } : null
+    );
+  };
+
   return (
     <div>
       {workout ? (
         <>
           <h1>{workout.startTime}</h1>
-          {workout.exercises.map((exercise: Exercise, i: number) => (
-            <ExerciseComponent key={i} exercise={exercise} />
-          ))}
+          <form onSubmit={handleSubmit}>
+            {workout.exercises.map((exercise: Exercise, i: number) => (
+              <ExerciseComponent
+                key={i}
+                exercise={exercise}
+                changeWeight={(value) => handleExerciseChange(value, exercise)}
+              />
+            ))}
+            <button type="submit">Submit</button>
+          </form>
         </>
       ) : (
         <>Loading...</>
@@ -51,5 +75,3 @@ function WorkoutPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
-
-export default WorkoutPage;
