@@ -10,7 +10,7 @@ import { twofa } from '../TwoFA';
 
 const app = express();
 app.use(cors())
-const PORT = 3001;
+const PORT = 8080;
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET || 'hihi';
 console.log(JWT_SECRET_KEY);
