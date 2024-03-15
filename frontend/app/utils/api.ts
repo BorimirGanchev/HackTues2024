@@ -103,7 +103,6 @@ class ExercisesApi implements IExerciseApi {
     const res: AxiosResponse<Workout[]> = await axios.get(
       `${this.baseUrl}/workouts/all/${username}`
     );
-    console.log(res);
     return res.data;
   }
 

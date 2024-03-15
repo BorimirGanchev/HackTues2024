@@ -37,7 +37,6 @@ export default function WorkoutPage({ params }: { params: { id: string } }) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(workout);
     api.updateWorkout(jwtDecode(cookies.token.get()).username, workout); // Log the updated array of exercises
   };
 

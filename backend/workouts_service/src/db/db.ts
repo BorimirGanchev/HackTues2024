@@ -42,11 +42,6 @@ class DB {
         throw new Error(`User with username ${username} not found`);
       }
 
-      console.log(
-        exercises.map((value) => {
-          console.log(value);
-        }),
-      );
 
       await prisma.workout.create({
         data: {

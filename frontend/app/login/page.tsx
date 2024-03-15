@@ -6,7 +6,6 @@ import { authApi } from "../utils/api";
 
 const Login: React.FC = () => {
   const handleSubmit = async (data: { [key: string]: string }) => {
-    try {
       const userData = {
         username: data.username,
         password: data.password,
@@ -18,9 +17,6 @@ const Login: React.FC = () => {
       console.log("Token:", token);
       cookies.token.set(token);
       window.location = "/workout";
-    } catch (error) {
-      console.log("Error occurred:");
-    }
   };
 
   const fields = [

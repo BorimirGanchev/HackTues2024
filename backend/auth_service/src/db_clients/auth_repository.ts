@@ -45,9 +45,7 @@ class DB implements IDB {
     password: string,
   ): Promise<{ success: boolean; message?: string }> {
     try {
-      console.log(username, password);
       const existingUser: IUser | null = await User.findOne({ username });
-      console.log(existingUser);
       if (existingUser) {
         return { success: false, message: 'Username already exists' };
       }

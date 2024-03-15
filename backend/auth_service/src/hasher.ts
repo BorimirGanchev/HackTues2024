@@ -18,7 +18,6 @@ export class PasswordHasher implements IPasswordHasher {
 
       return hashedPassword;
     } catch (err) {
-      console.log(err);
       throw new Error('checkout the error logged above');
     }
   }

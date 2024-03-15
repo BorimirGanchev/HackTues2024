@@ -18,13 +18,11 @@ function MyWorkOutsPage() {
     }
 
     const decodedObject = jwtDecode(token);
-    console.log(decodedObject);
 
     async function fetchWorkouts() {
       try {
         const res = await api.getAllWorkouts(decodedObject.username);
         setWorkouts(res);
-        console.log("result", res);
       } catch (error) {
         console.error("Error fetching workouts:", error);
         // Handle error, maybe set some default value for workouts or show an error message
