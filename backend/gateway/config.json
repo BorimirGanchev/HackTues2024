@@ -5,7 +5,7 @@
   "model": {
     "redirect_url": "http://localhost:5000"
   },
-  "workouts":{
-"redirect_url":"http://localhost:6000"
+  "workouts": {
+    "redirect_url": "http://localhost:3001"
   }
 }

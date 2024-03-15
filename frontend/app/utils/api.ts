@@ -55,7 +55,7 @@ import { Exercise, Workout } from "../types/ExerciseServiceTypes";
 //   ],
 // };
 
-interface IApi {
+interface IExerciseApi {
   getAllWorkouts(username: string): Promise<Workout[]>;
   getWorkout(username: string, id: number): Promise<Workout>;
 }
@@ -74,7 +74,26 @@ interface IApi {
 
 // } TODO
 
-class ExercisesApi implements IApi {
+class AuthApi {
+  private baseUrl: string;
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+  async login(data: { [key: string]: string }) {
+    return await axios.post(`${this.baseUrl}/auth/login`, {
+      username: data.username,
+      password: data.password,
+    });
+  }
+  async signup(data: { [key: string]: string }) {
+    return await axios.post(`${this.baseUrl}/auth/signup`, {
+      username: data.username,
+      password: data.password,
+    });
+  }
+}
+
+class ExercisesApi implements IExerciseApi {
   private baseUrl;
   constructor(url: string) {
     this.baseUrl = url;
@@ -99,4 +118,5 @@ class ExercisesApi implements IApi {
   }
 }
 
-export const api: IApi = new ExercisesApi("http://localhost:3001");
+export const api = new ExercisesApi("http://localhost:3001");
+export const authApi = new AuthApi("http://localhost:8080");
