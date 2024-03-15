@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import {Navbar} from '../components/Navbar';
 import {WorkOut} from '../components/WorkOut';
-import { api, workout } from '../utils/api';
+import { Workout } from '../types/ExerciseServiceTypes';
+import { api } from '../utils/api';
 import { cookies } from '../utils/cookieHandler';
 import { useCheckUserToken } from '../utils/authenticator';
 function MyWorkOutsPage() {
-  const [workouts,setWorkouts] = useState<workout[] | null>()
+  const [workouts,setWorkouts] = useState<Workout[] | null>()
   useEffect(() => {
     useCheckUserToken();
     const username = cookies.token.get()
@@ -15,7 +16,11 @@ function MyWorkOutsPage() {
       //TODO redirect to home page
       return
     }
-    setWorkouts(api.getAllWorkouts(username))
+    let res;
+     async () => {
+      res = await api.getAllWorkouts(username) 
+     }
+    setWorkouts(res)
   },[])
   return (
     <div>
