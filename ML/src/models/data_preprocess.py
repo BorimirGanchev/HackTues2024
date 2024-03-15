@@ -130,7 +130,8 @@ def process_data():
             df_temporal = df.copy()
             NumABS = NumericalAbstraction()
 
-            predictor_columns = predictor_columns + ['acc_r', 'gyr_r']
+            columns_for_prediction = list(df.columns[:6])
+            predictor_columns = columns_for_prediction + ['acc_r', 'gyr_r']
 
             # Window size 5
             ws = int(1000 / 200)

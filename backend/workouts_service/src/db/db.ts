@@ -1,8 +1,22 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, User, Exercise, Workout } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 class DB {
+  async createUser(username: string): Promise<User> {
+    try {
+      // Create the user in the database
+      const user = await prisma.user.create({
+        data: {
+          username,
+        },
+      });
+
+      return user;
+    } catch (error) {
+      throw new Error(`Failed to create user: ${error}`);
+    }
+  }
   async createWorkout(
     username: string,
     startTime: Date,
@@ -81,3 +95,4 @@ class DB {
 }
 
 export const db = new DB();
+export { User, Exercise, Workout };

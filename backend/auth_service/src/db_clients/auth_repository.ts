@@ -5,7 +5,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 const uri: string = process.env.MONGO_URI || '';
 mongoose.connect(uri);
 
-interface IUser extends Document {
+export interface IUser extends Document {
   username: string;
   password: string;
   has_2fa: boolean;
