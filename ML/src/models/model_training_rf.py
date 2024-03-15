@@ -9,7 +9,7 @@ import itertools
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
-
+from sensor_input_df import sensor_data_to_df
 
 def model_training_rf():
     def random_forest(
@@ -102,18 +102,22 @@ def model_training_rf():
         return accuracy, cm
 
     # Load data and preprocess data
-    processed_df = process_data()
+    df = pickle.load(open("../../data/interim/01_data_processed.pkl", "rb"))
+    processed_df = process_data(df)
 
     # --------------------------------------------------------------
     # Create a training and test set
     # --------------------------------------------------------------
     df_train = processed_df.drop(columns=["participant", "category", "set"], axis=1)
-
+    df_train = df_train.reset_index()
     X = df_train.drop(columns=["label"], axis=1)
     y = df_train["label"]
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42, stratify=y)
-    (class_train_y, class_test_y, class_train_prob_y, class_test_prob_y) = random_forest(X_train, y_train, X_test, gridsearch=True, save_model=False)
+    (class_train_y, class_test_y, class_train_prob_y, class_test_prob_y) = random_forest(X_train, y_train, X_test, gridsearch=True, save_model=True)
     
     model = pickle.load(open("random_forest_model.pkl", "rb"))
     accuracy, cm = evaluate_model(X_test, y_test, model)
+    return accuracy, cm, df_train
+
+accuracy, cm, df_train = model_training_rf()
