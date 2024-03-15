@@ -10,7 +10,7 @@ from features.TemporalAbstraction import NumericalAbstraction
 from features.FrequencyAbstraction import FourierTransformation
 from sklearn.cluster import KMeans
 
-def process_data():
+def process_data(df):
     def remove_ouliers(df):  
         outlier_columns = list(df.columns[:6])
         
@@ -207,7 +207,6 @@ def process_data():
         
         return df_cluster
 
-    df = pd.read_pickle("../../data/interim/01_data_processed.pkl") # Load data
     outlier_removed_df = remove_ouliers(df) # Remove outliers
     processed_df = build_features(outlier_removed_df) # Build features
     

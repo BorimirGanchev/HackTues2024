@@ -3,18 +3,28 @@ import React from 'react';
 import Form from '../components/Form';
 import { cookies } from '../utils/cookieHandler';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import { redirect } from 'next/navigation';
 
 const Login: React.FC = () => {
-  const handleSubmit = (data: { [key: string]: string }) => {
-    console.log(data)
-    
-    const username = data.username;
+  const handleSubmit = async (data: { [key: string]: string }) => {
+    try {
+      const url = "http://localhost:3001/auth/login";
+      const userData = {
+        username: data.username,
+        password: data.password
+      };
 
-    console.log(username)
+      const response = await axios.post(url, userData);
+      const token = response.data.token;
 
-    cookies.user.set(username)
+      console.log('Token:', token);
+      cookies.token.set(token);
+      redirect('/workout');
+    } catch (error) {
+      console.log('Error occurred:');
 
-    
+    }
   };
 
   const fields = [

@@ -20,11 +20,13 @@ console.log(JWT_SECRET_KEY);
 const db: IDB = new DB();
 app.use(bodyParser.json());
 
+
+
 app.post('/auth/login', async (req: Request, res: Response) => {
   const { username, password } = req.body;
   console.log("statrt")
   try {
-    const User = await db.get_user(username);
+    const User = await db.get_user(username);//*TODO
     if (User === null) {
       return res.status(404).json({ err: 'User not found' });
     }
@@ -38,6 +40,8 @@ app.post('/auth/login', async (req: Request, res: Response) => {
     // twofa.createCode(User.username); // npt awaiting since we just need to fire an event
     // res.status(201).json("sent 2fa")
 
+    
+
     const token = jwt.sign({ username }, JWT_SECRET_KEY);
     console.log("hihi")
     return res.status(200).json({token});
@@ -45,6 +49,8 @@ app.post('/auth/login', async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+
 
 app.post('/auth/signup', async (req: Request, res: Response) => {
   const { username, password } = req.body;
