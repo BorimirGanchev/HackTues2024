@@ -9,7 +9,7 @@ import { redirect } from 'next/navigation';
 const Login: React.FC = () => {
   const handleSubmit = async (data: { [key: string]: string }) => {
     try {
-      const url = "http://localhost:3001/auth/login";
+      const url = "http://localhost:8080/auth/login";
       const userData = {
         username: data.username,
         password: data.password

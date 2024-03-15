@@ -6,20 +6,23 @@ import { Workout } from '../types/ExerciseServiceTypes';
 import { api } from '../utils/api';
 import { cookies } from '../utils/cookieHandler';
 import { useCheckUserToken } from '../utils/authenticator';
+import { jwtDecode } from 'jwt-decode';
 function MyWorkOutsPage() {
   const [workouts,setWorkouts] = useState<Workout[] | null>()
   useEffect(() => {
     //useCheckUserToken();
-    const username = cookies.token.get()
-    console.log('dari e tup ->', username)
-    if(username === undefined || username === null){
+    const token = cookies.token.get()
+    if(token === undefined || token === null){
       //TODO redirect to home page
       return
     }
+    console.log(jwtDecode(token))
+    
     let res;
      async () => {
-      res = await api.getAllWorkouts(username) 
+      res = await api.getAllWorkouts(token) 
      }
+     console.log("result",res)
     setWorkouts(res)
   },[])
   return (
