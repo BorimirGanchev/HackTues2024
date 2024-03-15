@@ -25,6 +25,14 @@ Track Fit is a comprehensive fitness solution that uses easy to use technology t
 
 ![image info](./image.png)
 
+## FITNESS EXERCISE PREPROCESSED ANALYSIS - SQUAT
+
+![image info](./heavy_squat.png)
+
+## PREDICTED REPS vs REAL REPS -> 96.4% accuracy
+
+![image info](./accuracy_image.png)
+
 ## Usage
 
 To use Track Fit, follow these steps:
