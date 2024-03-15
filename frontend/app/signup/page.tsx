@@ -1,19 +1,25 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from '../components/Form';
 import axios from 'axios';
 
+
 const Signup: React.FC = () => {
-  const [isReqSuccessful,setIsReqSuccessful] = useState<undefined | string>(undefined)
+  const [isReqSuccessful, setIsReqSuccessful] = useState<undefined | string>(undefined);
+
+
   const handleSubmit = async (data: { [key: string]: string }) => {
-    const res = await axios.post("http://localhost:3001/auth/signup",{
-      body: {
+    try {
+      const res = await axios.post("http://localhost:3001/auth/signup", {
         username: data.username,
         password: data.password
-      }
-    })
-    console.log("token -> ",res);
-    setIsReqSuccessful(res.data.message)
+      });
+      console.log("Response:", res);
+      setIsReqSuccessful(res.data.message);
+    } catch (error) {
+      console.error("Axios error:", error);
+      setIsReqSuccessful(undefined);
+    }
   };
 
   const fields = [
@@ -22,11 +28,7 @@ const Signup: React.FC = () => {
     { label: 'Password', type: 'password', name: 'password' },
   ];
 
-  if(isReqSuccessful){
-
-  }
-
-  return ( 
+  return (
     <div className='bg-white dark:bg-slate-800 min-h-screen flex justify-center items-center px-4'>
       <div className="w-full max-w-md flex flex-col items-center">
         <div>{isReqSuccessful ? <div>Redirecting ...</div> : <></>} </div>
@@ -40,4 +42,3 @@ const Signup: React.FC = () => {
 };
 
 export default Signup;
-

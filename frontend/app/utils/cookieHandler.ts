@@ -72,8 +72,3 @@ export const cookies = new CookieBuilder()
   .setCookie("user")
   .setCookie("token", { expires: 7 }) // Example with options
   .build();
-
-cookies.user.set("kur");
-console.log(cookies.user.get());
-cookies.token.set("abc");
-console.log(cookies.token.get());
