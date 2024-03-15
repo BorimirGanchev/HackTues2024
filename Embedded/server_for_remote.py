@@ -15,6 +15,7 @@ class FlaskServer:
     def end(self):
         # Assuming log_sensor_data() returns a string message with the log data
         log_data = self.sensor.log_sensor_data(self.sensor.sensor.return_data())
+        print("log data")
         print(log_data)
         requests.post("http://localhost:4000/model/predict",{
             "gyro":log_data
