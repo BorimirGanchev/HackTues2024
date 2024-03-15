@@ -5,11 +5,16 @@ const PORT = 6000;
 
 app.use(express.json());
 
-app.post('/workouts/new/', async (req, res) => {
-  //* this route is reserved for the ml service server
-  const { newWorkout, username, startTime, endTime } = req.body;
+app.post('/workouts/user/new/:username', async (req, res) => {
+  const newUser = await db.createUser(req.params.username);
+  return res.status(200).json(newUser);
+});
 
-  await db.createWorkout(username, startTime, endTime, newWorkout);
+app.post('/workouts/new', async (req, res) => {
+  //* this route is reserved for the ml service server
+  const { exercises, username, startTime, endTime } = req.body;
+
+  await db.createWorkout(username, startTime, endTime, exercises);
   return res.status(200).json('success');
 });
 
@@ -19,7 +24,7 @@ app.get('/workouts/all/:username', async (req: Request, res: Response) => {
   return res.status(200).json(workouts);
 });
 
-app.get('/workouts/:id', async (req: Request, res: Response) => {
+app.get('/workouts/get/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const { username } = req.body;
   const workout = await db.getWorkout(username, id);

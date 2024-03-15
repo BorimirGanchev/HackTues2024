@@ -1,8 +1,8 @@
 'use client'
-import { Exercise } from '@/app/components/Exercise';
+import { Exercise, ExerciseComponent } from '@/app/components/Exercise';
 import { useAsync } from '@/app/utils/useAsync';
 import { useRouter } from 'next/router';
-import { api, workout } from '../../utils/api';
+import { api } from '../../utils/api';
 
 
 
@@ -30,7 +30,7 @@ function WorkoutPage({ params }: { params: { id: string } }) {
   return (
     <div>
     <h1>{workout.name}</h1>
-      {workout.exercises.map((exercise, i)=> (<Exercise key={exercise.id} exercise={exercise} />))}
+      {workout.exercises.map((exercise: { id: any; }, i: any)=> (<ExerciseComponent key={exercise.id} exercise={exercise} />))}
     </div>
   );
 }
