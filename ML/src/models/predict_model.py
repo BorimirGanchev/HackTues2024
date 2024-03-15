@@ -10,7 +10,6 @@ from test_sensor_data import sensor_data
 
 def add_sets_to_df(df):
     df["set"] = 0
-    # Check if the set is the same as the previous row and if not, increment the set number
     df["set"] = (df["label"] != df["label"].shift(1)).cumsum()
     return df
 
@@ -67,16 +66,16 @@ def count_repetitions(df):
         cutoff = 0.4
         order = 10
         
-        # if subset["label"].iloc[0] == "bench":
-        #     cutoff = 0.423
-        #     column = "acc_r"
+        if subset["label"].iloc[0] == "bench":
+            cutoff = 0.423
+            column = "acc_r"
         
         if subset["label"].iloc[0] == "squat":
             cutoff = 0.395
         
-        # if subset["label"].iloc[0] == "row":
-        #     cutoff = 0.7
-        #     column = "gyr_r"
+        if subset["label"].iloc[0] == "row":
+            cutoff = 0.7
+            column = "gyr_r"
         
         if subset["label"].iloc[0] == "ohp":
             cutoff = 0.43
@@ -104,11 +103,6 @@ def predict_model(sensor_data):
     y_preds = random_forest_model.predict(processed_df)
     labeled_df = add_label_column_df(processed_df, y_preds)
     df_with_sets = add_sets_to_df(labeled_df)
-    df_with_sets.to_csv("df_with_sets.csv")
     rep_df = count_repetitions(df_with_sets)
     return rep_df
-
-
-
-rep_df = predict_model(sensor_data)
 
