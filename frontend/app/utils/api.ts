@@ -108,11 +108,8 @@ class ExercisesApi implements IExerciseApi {
   }
 
   async getWorkout(username: string, id: number): Promise<Workout> {
-    const res: AxiosResponse<Workout> = await axios.post(
-      `${this.baseUrl}/workouts/${id}`,
-      {
-        username: username,
-      }
+    const res: AxiosResponse<Workout> = await axios.get(
+      `${this.baseUrl}/workouts/get/${id}/${username}`
     );
     return res.data;
   }
