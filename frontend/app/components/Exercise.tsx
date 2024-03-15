@@ -1,10 +1,13 @@
 // ExerciseComponent.tsx
-import React, { useState } from 'react';
-import { Exercise } from '../types/ExerciseServiceTypes'; // Assuming this is where your type is correctly defined
+import React, { useState } from "react";
+import { Exercise } from "../types/ExerciseServiceTypes"; // Assuming this is where your type is correctly defined
 
-export const ExerciseComponent: React.FC<{exercise: Exercise}> = ({exercise}) => {
+export const ExerciseComponent: React.FC<{
+  exercise: Exercise;
+  changeWeight: (newWeightValue: string) => void;
+}> = ({ exercise, changeWeight }) => {
   // State to hold the weight input
-  const [weight, setWeight] = useState(exercise.weight || '');
+  const [weight, setWeight] = useState(exercise.weight || "");
 
   // Function to update the weight state
   const handleWeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,24 +15,33 @@ export const ExerciseComponent: React.FC<{exercise: Exercise}> = ({exercise}) =>
   };
 
   return (
-    <div>
-      <h3>{exercise.name}</h3>
-      <h3>{exercise.reps}</h3>
-      {exercise.weight !== undefined ? ( // Assuming weight can be 0, which should be truthy in this context
-        <div>{exercise.weight}</div>
+    <div className="exercise-container">
+      <div>Type: {exercise.type}</div>
+      <h3>Reps: {exercise.reps}</h3>
+      {exercise.weight !== null ? (
+        <div className="weight">{exercise.weight}</div>
       ) : (
-        <form> {/* Form tag added for completeness */}
+        <>
           <label htmlFor="weight-input">Weight: </label>
           <input
             id="weight-input"
-            type="number" 
+            type="number"
             value={weight}
-            onChange={handleWeightChange}
+            onChange={(e) => {
+              setWeight(e.target.value);
+            }}
+            className="weight-input"
           />
-        </form>
+          <button
+            onClick={() => {
+              changeWeight(weight);
+            }}
+          >
+            Update Weight
+          </button>
+        </>
       )}
+      <br />
     </div>
   );
 };
-export { Exercise };
-

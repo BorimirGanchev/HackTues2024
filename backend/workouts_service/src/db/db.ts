@@ -56,7 +56,10 @@ class DB {
           exercises: {
             create: exercises.map((exercise) => {
               return {
-                ...exercise,
+                type: exercise.type,
+                reps: exercise.reps,
+                weight: exercise.weight,
+                rawData: exercise.rawData,
               };
             }),
           },

@@ -77,5 +77,7 @@ class Sensor:
                 "ms": self.timestamp_ms
             }
         }
+        with open('sensor_data_readed.txt', 'w') as f:
+            f.write(str(sensor_data))
         return sensor_data
 
