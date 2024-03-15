@@ -1,5 +1,4 @@
-const http = require("http");
-const url = require("url");
+const express = require("express");
 const axios = require("axios");
 const config = require("./config.json");
 
@@ -32,54 +31,45 @@ class API {
 }
 
 const api = new API();
+const app = express();
 
-const server = http.createServer(async (req, res) => {
-  const parsedUrl = url.parse(req.url, true);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-  let requestBody = "";
+app.all("*", async (req, res) => {
+  const parsedUrl = req.originalUrl;
 
-  req.setEncoding("utf8");
+  console.log("Requested URL:", parsedUrl);
+  console.log("Request Body:", req.body);
+  console.log("Request Method:", req.method);
 
-  req.on("data", (chunk) => {
-    requestBody += chunk;
-  });
-  console.log("test");
-  req.on("end", async () => {
-    console.log("Requested URL:", parsedUrl.pathname);
-    console.log("Request Body:", requestBody);
-    console.log("Request Method:", req.method);
+  const targetUrl = api.getServiceUrl(parsedUrl);
+  console.log("Target URL:", targetUrl + parsedUrl);
 
-    const targetUrl = api.getServiceUrl(parsedUrl.pathname);
-    console.log("Target URL:", targetUrl + parsedUrl.pathname);
+  if (!targetUrl) {
+    res.status(404).send("Service not found\n");
+    return;
+  }
 
-    if (!targetUrl) {
-      res.writeHead(404, { "Content-Type": "text/plain" });
-      res.end("Service not found\n");
-      return;
-    }
+  try {
+    const axiosConfig = {
+      method: req.method,
+      url: targetUrl + parsedUrl,
+      data: req.body,
+      headers: req.headers,
+    };
 
-    try {
-      const axiosConfig = {
-        method: req.method,
-        url: targetUrl + parsedUrl.pathname,
-        data: requestBody,
-        headers: req.headers,
-      };
+    const response = await api.sendReq(axiosConfig);
 
-      const response = await api.sendReq(axiosConfig);
-
-      res.writeHead(response.status, response.headers);
-      res.end(response.data);
-    } catch (error) {
-      console.error("Error:", error.message);
-      res.writeHead(500, { "Content-Type": "text/plain" });
-      res.end("Internal Server Error\n");
-    }
-  });
+    res.status(response.status).set(response.headers).send(response.data);
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).send("Internal Server Error\n");
+  }
 });
 
 const port = 7000;
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
