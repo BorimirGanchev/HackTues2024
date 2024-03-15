@@ -17,6 +17,7 @@ class Sensor:
         self.should_run = True
         self.gyro_x, self.gyro_y,self.gyro_z = [], [], []
         self.accel_x, self.accel_y, self.accel_z = [], [], []
+        self.timestamp_ms = []
 
 
     def turn_off(self):
@@ -30,6 +31,9 @@ class Sensor:
         try: 
             while self.should_run:
                 # Collect gyroscopic data
+
+                timestamp_ms_now = int(round(time.time() * 1000))
+                self.timestamp_ms.append(timestamp_ms_now) 
                 gyro_data = mpu.get_gyro_data()
                 self.gyro_x.append(gyro_data['x'])
                 self.gyro_y.append(gyro_data['y'])
@@ -68,6 +72,9 @@ class Sensor:
                 "x": self.accel_x,
                 "y": self.accel_y,
                 "z": self.accel_z
+            },
+            "timestamp_ms": {
+                "ms": self.timestamp_ms
             }
         }
         return sensor_data
