@@ -118,6 +118,6 @@ def model_training_rf():
     
     model = pickle.load(open("random_forest_model.pkl", "rb"))
     accuracy, cm = evaluate_model(X_test, y_test, model)
-    return accuracy, cm, df_train
+    return accuracy, cm
 
-accuracy, cm, df_train = model_training_rf()
+accuracy, cm= model_training_rf()
