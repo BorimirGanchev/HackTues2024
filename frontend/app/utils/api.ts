@@ -81,10 +81,11 @@ class ExercisesApi implements IApi {
   }
 
   async getAllWorkouts(username: string): Promise<Workout[]> {
-    const res: Workout[] = await axios.get(
+    const res: AxiosResponse<Workout[]> = await axios.get(
       `${this.baseUrl}/workouts/all/${username}`
     );
-    return res;
+    console.log(res);
+    return res.data;
   }
 
   async getWorkout(username: string, id: number): Promise<Workout> {
@@ -98,6 +99,4 @@ class ExercisesApi implements IApi {
   }
 }
 
-
-
-export const api: IApi = new ExercisesApi("http://localhost:6000");
+export const api: IApi = new ExercisesApi("http://localhost:3001");
