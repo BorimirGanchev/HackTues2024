@@ -1,20 +1,23 @@
-const http = require('http');
-const url = require('url');
-const axios = require('axios');
-const config = require('./config.json');
+const http = require("http");
+const url = require("url");
+const axios = require("axios");
+const config = require("./config.json");
 
 class API {
   getIndexAfterServiceName(subRoute) {
     for (let i = 1; i < subRoute.length; i += 1) {
-      if (subRoute[i] === '/') {
+      if (subRoute[i] === "/") {
         return i;
       }
     }
-    return subRoute.length; // Return the length if no '/' is found
+    return subRoute.length;
   }
 
   getServiceUrl(subRoute) {
-    const serviceName = subRoute.slice(1, this.getIndexAfterServiceName(subRoute));
+    const serviceName = subRoute.slice(
+      1,
+      this.getIndexAfterServiceName(subRoute)
+    );
     return config[serviceName]?.redirect_url || null; // Use optional chaining and provide a default value
   }
 
@@ -33,24 +36,25 @@ const api = new API();
 const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
 
-  let requestBody = '';
+  let requestBody = "";
 
-  req.setEncoding('utf8');
+  req.setEncoding("utf8");
 
-  req.on('data', (chunk) => {
+  req.on("data", (chunk) => {
     requestBody += chunk;
   });
-
-  req.on('end', async () => {
-    console.log('Requested URL:', parsedUrl.pathname);
-    console.log('Request Body:', requestBody);
-    console.log('Request Method:', req.method);
+  console.log("test");
+  req.on("end", async () => {
+    console.log("Requested URL:", parsedUrl.pathname);
+    console.log("Request Body:", requestBody);
+    console.log("Request Method:", req.method);
 
     const targetUrl = api.getServiceUrl(parsedUrl.pathname);
+    console.log("Target URL:", targetUrl + parsedUrl.pathname);
 
     if (!targetUrl) {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('Service not found\n');
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Service not found\n");
       return;
     }
 
@@ -67,14 +71,14 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(response.status, response.headers);
       res.end(response.data);
     } catch (error) {
-      console.error('Error:', error.message);
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end('Internal Server Error\n');
+      console.error("Error:", error.message);
+      res.writeHead(500, { "Content-Type": "text/plain" });
+      res.end("Internal Server Error\n");
     }
   });
 });
 
-const port = 4000;
+const port = 7000;
 
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
