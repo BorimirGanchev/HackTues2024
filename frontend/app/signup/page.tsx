@@ -9,7 +9,6 @@ const Signup: React.FC = () => {
   );
   const handleSubmit = async (data: { [key: string]: string }) => {
     const res = await authApi.signup(data);
-    console.log("token -> ", res);
     setIsReqSuccessful(res.data.message);
   };
 

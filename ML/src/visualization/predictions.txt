@@ -1,0 +1,35 @@
+dead - 6
+rest
+dead - 6
+rest
+dead - 8
+rest
+dead - 8
+rest
+dead - 8
+rest
+dead - 8
+rest
+dead - 5
+rest
+dead - 5
+rest
+dead - 5
+rest
+dead - 6
+rest
+dead - 6
+rest
+dead - 6
+rest
+row - 8
+rest
+row - 10
+rest
+ohp - 10
+rest
+ohp - 12
+rest
+ohp - 10
+rest
+ohp - 8

@@ -13,7 +13,6 @@ app.use(cors());
 const PORT = 8080;
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET || 'hihi';
-console.log(JWT_SECRET_KEY);
 
 //! TODO introduce async bcrypt to improve performance
 
@@ -22,7 +21,6 @@ app.use(bodyParser.json());
 
 app.post('/auth/login', async (req: Request, res: Response) => {
   const { username, password } = req.body;
-  console.log('statrt');
   try {
     const User = await db.get_user(username); //*TODO
     if (User === null) {
@@ -39,7 +37,6 @@ app.post('/auth/login', async (req: Request, res: Response) => {
     // res.status(201).json("sent 2fa")
 
     const token = jwt.sign({ username }, JWT_SECRET_KEY);
-    console.log('hihi');
     return res.status(200).json({ token });
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
@@ -69,6 +66,3 @@ app.post('/testing_route', (req: Request, res: Response) => {
 
 //app.post;
 
-app.listen(PORT, () => {
-  console.log(`Authentication service running on port ${PORT}`);
-});

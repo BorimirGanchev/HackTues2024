@@ -6,7 +6,6 @@ import { authApi } from "../utils/api";
 
 const Login: React.FC = () => {
   const handleSubmit = async (data: { [key: string]: string }) => {
-    try {
       const userData = {
         username: data.username,
         password: data.password,
