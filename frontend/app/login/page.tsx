@@ -17,7 +17,7 @@ const Login: React.FC = () => {
 
       console.log("Token:", token);
       cookies.token.set(token);
-      window.location = "/workout";
+      window.location.href = "/workout";
     } catch (error) {
       console.log("Error occurred:");
     }

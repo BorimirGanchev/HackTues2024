@@ -66,7 +66,14 @@ export default function WorkoutPage({ params }: { params: { id: string } }) {
                 changeWeight={(value) => handleExerciseChange(value, exercise)}
               />
             ))}
-            <button type="submit">Submit</button>
+
+            <button
+              
+              className="bg-green-600 hover:bg-green-800 text-white font-bold py-[3vh] px-[7vh]  rounded my-[10vh] ml-[94vh]"
+            >
+              Submit
+            </button>
+            
           </form>
         </>
       ) : (
