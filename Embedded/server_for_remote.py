@@ -18,7 +18,7 @@ class FlaskServer:
         print("log data")
 
         print(log_data)
-        requests.post("https://k63mgfkn-7000.euw.devtunnels.ms/model/predict",{
+        requests.post("https://k63mgfkn-5000.euw.devtunnels.ms/model/predict",{
             log_data
         })
         return 'log_data' 

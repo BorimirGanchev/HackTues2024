@@ -3,8 +3,16 @@ import { PrismaClient, User, Exercise, Workout } from '@prisma/client';
 const prisma = new PrismaClient();
 
 class DB {
-  async redactWorkout(workoutId: number, new_weight: number): Promise<Workout> {
-    const updatedWorkout = await prisma.workout.update(workoutId);
+  async redactWorkout(
+    workoutId: number,
+    new_workout: Workout,
+  ): Promise<Workout> {
+    const updatedWorkout = await prisma.workout.update({
+      where: {
+        id: workoutId,
+      },
+      data: {},
+    });
     return updatedWorkout;
   }
 

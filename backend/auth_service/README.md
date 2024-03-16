@@ -23,8 +23,8 @@ enter env as shown in
 ## Start the server:
 
 ```bash
-
-npm start
+ npm run start_ts_dev
+```
 
 The server will start running on port 3000 by default.
 Endpoints
@@ -34,11 +34,11 @@ Registers a new user with the provided username and password.
 
 Request body:
 
-json
+```json
 
 {
-  "username": "your_username",
-  "password": "your_password"
+"username": "your_username",
+"password": "your_password"
 }
 
 Response:
@@ -56,8 +56,8 @@ Request body:
 json
 
 {
-  "username": "your_username",
-  "password": "your_password"
+"username": "your_username",
+"password": "your_password"
 }
 
 Response:
@@ -76,7 +76,7 @@ Request body:
 json
 
 {
-  "token": "your_jwt_token"
+"token": "your_jwt_token"
 }
 
 Response:
