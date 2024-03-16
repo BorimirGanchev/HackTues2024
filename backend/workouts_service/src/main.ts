@@ -12,9 +12,7 @@ app.post('/workouts/user/new/:username', async (req, res) => {
 });
 
 app.post('/workouts/new', async (req, res) => {
-  //* this route is reserved for the ml service server
   const { exercises, username, startTime, endTime } = req.body;
-
   await db.createWorkout(username, startTime, endTime, exercises);
   return res.status(200).json('success');
 });

@@ -127,6 +127,6 @@ class ExercisesApi implements IExerciseApi {
     return res.data;
   }
 }
-
-export const api = new ExercisesApi("http://localhost:7000");
-export const authApi = new AuthApi("http://localhost:7000");
+const baseUrl = "https://k63mgfkn-7000.euw.devtunnels.ms";
+export const api = new ExercisesApi(baseUrl);
+export const authApi = new AuthApi(baseUrl);

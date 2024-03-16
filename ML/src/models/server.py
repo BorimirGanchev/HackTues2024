@@ -1,18 +1,31 @@
 from flask import Flask, request, jsonify
-import pickle
+from flask_cors import CORS
 from predict_model import predict_model
-
+import requests
 app = Flask(__name__)
-@app.route("/model/predict", methods=["POST","GET"])
+CORS(app)
+
+@app.route("/model/predict", methods=["POST"])
 def predict():
     try:
+        # Extracting data from the JSON request
         data = request.json
         print(data)
-        return str(data)
+        username = data.get('username')
+        exercises =  predict_model(data)
+        startTime = data.get('startTime')
+        endTime = data.get('endTime')
+
+        
+
+        response = requests.post("http://localhost:7000/workouts/new", json=data)
+
+        if response.status_code == 200:
+            return jsonify({"success": True})
+        else:
+            return jsonify({"error": "Failed to send data to the server"}), response.status_code
     except Exception as e:
-        print(e)
-        # Return error message if prediction fails
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)  
+    app.run(debug=True)
