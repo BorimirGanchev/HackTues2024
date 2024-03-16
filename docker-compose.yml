@@ -1,0 +1,51 @@
+version: '3.8'
+
+# Services
+services:
+
+  #auth_service
+  auth_service:
+    build:
+      context: ./backend/auth_service
+      dockerfile: Dockerfile
+      
+    container_name: auth_service
+    ports:
+      - "8080:8080"
+    environment:
+      - JWT_SECRET="your_secret"
+      - MONGO_URI="mongodb+srv://KURO:KURO@task-manager.8d8g6sk.mongodb.net/GYM?retryWrites=true&w=majority"
+
+
+  #workout_service
+  workout_service:
+    build:
+      context: ./backend/workouts_service
+      dockerfile: Dockerfile
+      
+    container_name: workouts_service
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL="postgresql://postgres:iLIxAwKQgqQWemNvFcNwEgCPEYzDkwxh@monorail.proxy.rlwy.net:15555/railway"
+
+  gateway: 
+    build:
+      context: ./backend/gateway
+      dockerfile: Dockerfile
+      
+    container_name: gateway
+    ports:
+      - "7000:7000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      
+    container_name: frontend
+    ports:
+      - "3000:3000"
+
+
+

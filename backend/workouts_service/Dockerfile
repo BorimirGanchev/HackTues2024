@@ -9,6 +9,9 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8080
+RUN npx prisma generate
+
+EXPOSE 3001
+
 
 CMD ["npm", "run", "start_ts_dev"]

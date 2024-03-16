@@ -9,6 +9,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 7000
 
-CMD ["npm", "run", "start_ts_dev"]
+CMD ["npm", "start"]

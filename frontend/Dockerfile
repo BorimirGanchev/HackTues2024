@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:18
 
 WORKDIR /usr/src/app
 
@@ -9,6 +9,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8080
+#RUN npm run build
 
-CMD ["npm", "run", "start_ts_dev"]
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]

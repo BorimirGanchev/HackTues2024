@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.example
+.eslintignore
+.eslintrc.json
+.editorconfig
+.gitignore
+.prettierrc
+jest.config.js
+LICENSE
+Read.me
+tsconfig.json
+tsconfig.release.json
